@@ -1,4 +1,3 @@
----
 name: Checks
 
 on: [push]
@@ -8,16 +7,18 @@ jobs:
     name: Test and Lint
     runs-on: ubuntu-20.04
     steps:
-      - name: Login to Docker Hub
+      - name: Login to Docker Hub (User 1)
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-     - name: Login to Docker Hub (User 2)
+
+      - name: Login to Docker Hub (User 2)
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKERHUB_USER_1 }}
-          password: ${{ secrets.DOCKERHUB_TOKEN_1 }}   
+          password: ${{ secrets.DOCKERHUB_TOKEN_1 }}
+
       - name: Checkout
         uses: actions/checkout@v2
       - name: Test
